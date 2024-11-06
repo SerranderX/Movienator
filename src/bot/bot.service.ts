@@ -51,6 +51,7 @@ export class BotService {
           }),
         },
       );
+      console.log('Comands', this.commands);
       console.log('Successfully reloaded application (/) commands.');
     } catch (error) {
       console.error(error);

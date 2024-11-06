@@ -9,6 +9,10 @@ const commands = [
     name: 'ping',
     description: 'Replies with Pong!',
   },
+  {
+    name: 'wena',
+    description: 'Replies a greeting in Chilean!',
+  },
 ];
 
 @Module({
