@@ -211,6 +211,7 @@ export class AppService {
     let idxMovie = 1;
     let idxMovieDEC = 1;
     const embeds = [];
+    console.log('Cantidad peliculas: ' + (movies.length - 1));
     for (const movie of movies) {
       const status = movie.watched ? '📗' : '📘';
       moviesStringList += `${status} ${idxMovie}.  ${movie.name}\n`;
@@ -223,6 +224,7 @@ export class AppService {
       }
       idxMovie++;
     }
+    console.log('idxMovie: ' + idxMovie);
 
     await interaction.reply({
       content:
