@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_PRISMA_CONNECTION")
+}
+
+model general_pull {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_movie    String?   @db.Uuid
+  sorted      Boolean?
+  sorted_date DateTime? @db.Timestamp(6)
+  movie       movie?    @relation(fields: [id_movie], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gpull_movie")
+}
+
+model genre {
+  id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  description String? @db.VarChar(255)
+  movie       movie[]
+}
+
+model gpull_movie_vote {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_user     String    @db.Uuid
+  droped      Boolean   @default(false)
+  sorted      Boolean   @default(false)
+  sorted_date DateTime? @db.Timestamp(6)
+  droped_date DateTime? @db.Timestamp(6)
+  id_movie    String    @db.Uuid
+  movie       movie     @relation(fields: [id_movie], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_movie")
+  user        user      @relation(fields: [id_user], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
+}
+
+model movie {
+  id               String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name             String?            @db.VarChar(255)
+  createdAt        DateTime?          @db.Timestamp(6)
+  watched          Boolean?
+  id_genre         String?            @db.Uuid
+  number           BigInt             @default(autoincrement())
+  general_pull     general_pull[]
+  gpull_movie_vote gpull_movie_vote[]
+  genre            genre?             @relation(fields: [id_genre], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_genre")
+}
+
+model user {
+  id               String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name             String?            @db.VarChar(255)
+  createdAt        DateTime?          @db.Timestamp(6)
+  idDiscord        String?            @db.VarChar(255)
+  active           Boolean            @default(true)
+  gpull_movie_vote gpull_movie_vote[]
+}

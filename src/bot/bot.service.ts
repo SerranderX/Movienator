@@ -6,8 +6,8 @@ import {
   REST,
   Routes,
 } from 'discord.js';
-import { EnvironmentService } from 'src/common/config/environment.service';
-import { EnvEnum } from 'src/common/config/types/enviroment.enum';
+import { EnvironmentService } from '../common/config/environment.service';
+import { EnvEnum } from '../common/config/types/enviroment.enum';
 
 export type CommandType = {
   name: string;
@@ -74,7 +74,7 @@ export class BotService {
         typeof this.functions[interaction.commandName] === 'function'
       )
         this.functions[interaction.commandName](interaction);
-      else interaction.reply('Sry, Command not available right now');
+      else interaction.reply('Sorry, Command not available right now');
     });
 
     client.login(this.environmentService.get(EnvEnum.CLIENT_TOKEN));

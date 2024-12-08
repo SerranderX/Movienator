@@ -1,8 +1,9 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { Routes } from 'discord.js';
 import { BotService } from './bot.service';
+import { MovieRepositoryService } from '../common/database/respository/movie.repository.service';
 
-@Controller('bot/beta')
+@Controller('bot')
 export class BotController {
   constructor(private readonly botService: BotService) {}
 
@@ -27,4 +28,7 @@ export class BotController {
 
     return members || 'NOT_FOUND';
   }
+
+  @Get('getAllMovies')
+  async getAllMovies() {}
 }
