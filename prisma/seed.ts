@@ -13,18 +13,21 @@ const users: user[] = [
     name: 'serrander',
     idDiscord: '421489243487993858',
     createdAt: new Date(),
+    active: true,
   },
   {
     id: '313b6446-2d8d-4d8e-8b8c-895bd8e33e01',
     name: 'miharu',
     idDiscord: '223257019132411904',
     createdAt: new Date(),
+    active: true,
   },
   {
     id: '73dae9ae-1fc6-4328-a5ed-f023b8204627',
     name: 'edwardscl',
     idDiscord: '536932144992223232',
     createdAt: new Date(),
+    active: true,
   },
 ];
 
@@ -185,7 +188,7 @@ const movies: movie[] = [
     id: '28f81e58-4e44-4899-a133-abea119940a3',
     name: 'El gato con botas 2',
     createdAt: new Date(),
-    watched: false,
+    watched: true,
     number: BigInt(21),
     id_genre: null,
   },
@@ -241,7 +244,7 @@ const movies: movie[] = [
     id: '0e9b30d5-b39f-444c-a2c4-0383754b430e',
     name: 'Planet of the Apes',
     createdAt: new Date(),
-    watched: false,
+    watched: true,
     number: BigInt(28),
     id_genre: null,
   },
@@ -272,6 +275,24 @@ const gPullMovieVotes: gpull_movie_vote[] = [
     sorted_date: new Date('2024-11-23 16:43:19'),
     droped_date: null,
     id_movie: '362a1721-80c6-4228-bf18-0e4ba79eed53',
+  },
+  {
+    id: 'c653e11d-366c-46e2-9b7a-43947cfe44db',
+    id_user: '73d492db-6e6b-42e8-b453-ffb7e6ce303d',
+    droped: false,
+    sorted: true,
+    sorted_date: new Date('2024-11-30 20:46:05.621'),
+    droped_date: null,
+    id_movie: '28f81e58-4e44-4899-a133-abea119940a3',
+  },
+  {
+    id: 'bdb8bcdf-81ae-49ae-bb3c-135961cce9b9',
+    id_user: '73d492db-6e6b-42e8-b453-ffb7e6ce303d',
+    droped: false,
+    sorted: true,
+    sorted_date: new Date('2024-12-07 20:29:09.38'),
+    droped_date: null,
+    id_movie: '0e9b30d5-b39f-444c-a2c4-0383754b430e',
   },
 ];
 
@@ -309,8 +330,8 @@ const generalPulls: general_pull[] = [
   {
     id: '5454074d-a345-436a-bbc9-c7d3e151cc71',
     id_movie: '28f81e58-4e44-4899-a133-abea119940a3',
-    sorted: null,
-    sorted_date: null,
+    sorted: true,
+    sorted_date: new Date('2024-12-07 17:27:49'),
   },
   {
     id: 'a19483e0-9f2d-4cf2-b640-78f814c50a97',
@@ -321,8 +342,8 @@ const generalPulls: general_pull[] = [
   {
     id: '0f43acb4-bcf1-46e8-b3a8-76b0c00f7dad',
     id_movie: '0e9b30d5-b39f-444c-a2c4-0383754b430e',
-    sorted: null,
-    sorted_date: null,
+    sorted: true,
+    sorted_date: new Date('2024-12-07 17:31:21'),
   },
   {
     id: '16153bcd-df0f-4a0d-85f6-7feb5351fb5d',
