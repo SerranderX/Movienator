@@ -52,8 +52,8 @@ export class GPullMovieVoteRepositoryService {
     });
   }
 
-  async findByMovieId(id: string): Promise<gpull_movie_vote | null> {
-    return await this.prismaService.gpull_movie_vote.findFirst({
+  async findAllByMovieId(id: string): Promise<gpull_movie_vote[] | null> {
+    return await this.prismaService.gpull_movie_vote.findMany({
       where: { movie: { id: id } },
     });
   }

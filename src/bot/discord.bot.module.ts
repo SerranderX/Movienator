@@ -6,6 +6,8 @@ import { UserRepositoryService } from '../common/database/respository/user.repos
 import { GeneralPullRepositoryService } from '../common/database/respository/generalpull.repository.service';
 import { MovieRepositoryService } from '../common/database/respository/movie.repository.service';
 import { GPullMovieVoteRepositoryService } from '../common/database/respository/gpullmovievote.repository.service';
+import { PeliculaEventoRepositoryService } from '../common/database/respository/peliculaevento.repository.service';
+import { EventoRepositoryService } from '../common/database/respository/evento.repository.service';
 
 @Module({
   controllers: [BotController],
@@ -31,6 +33,8 @@ export class DiscordBotModule {
         GeneralPullRepositoryService,
         MovieRepositoryService,
         GPullMovieVoteRepositoryService,
+        EventoRepositoryService,
+        PeliculaEventoRepositoryService,
       ],
       exports: [BotService],
     };

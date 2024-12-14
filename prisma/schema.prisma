@@ -53,3 +53,17 @@ model user {
   active           Boolean            @default(true)
   gpull_movie_vote gpull_movie_vote[]
 }
+
+model evento {
+  id              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name            String?           @db.VarChar(255)
+  pelicula_evento pelicula_evento[]
+}
+
+model pelicula_evento {
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String? @db.VarChar(255)
+  id_evento String? @db.Uuid
+  sorted    Boolean @default(false)
+  evento    evento? @relation(fields: [id_evento], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_evento_id")
+}

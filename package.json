@@ -20,7 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prisma:push": "npx prisma db push",
     "prisma:seed": "npx prisma db push && npx prisma db seed",
-    "prisma:pull": "npx prisma db pull",
+    "prisma:pull": "npx prisma db pull && npx prisma generate",
     "prisma:sync": "npx prisma generate"
     
   },
