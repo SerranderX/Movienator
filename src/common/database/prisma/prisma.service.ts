@@ -2,13 +2,17 @@ import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import { EnvironmentService } from '../../config/environment.service';
 import { EnvEnum } from '../../config/types/enviroment.enum';
+import { LoggerService } from 'src/common/logger/logger.service';
 
 @Injectable()
 export class PrismaService
   extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {
-  constructor(private readonly environmentService: EnvironmentService) {
+  constructor(
+    private readonly environmentService: EnvironmentService,
+    private readonly loggerService: LoggerService,
+  ) {
     super({
       log: JSON.parse(environmentService.get(EnvEnum.DB_LOGGER_LEVEL)),
       datasources: {
@@ -30,8 +34,8 @@ export class PrismaService
       },
     });
 
-    console.log(
-      `${this.environmentService.get(EnvEnum.DB_TYPE)}://${this.environmentService.get(
+    this.loggerService.info(
+      `Conexion to database with Prisma: ${this.environmentService.get(EnvEnum.DB_TYPE)}://${this.environmentService.get(
         EnvEnum.DB_USER,
       )}:${this.environmentService.get(EnvEnum.DB_PASS)}@${this.environmentService.get(
         EnvEnum.DB_HOST,

@@ -1,13 +1,7 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { BotController } from './bot.controller';
 import { BotService, CommandType } from './bot.service';
-import { PrismaService } from '../common/database/prisma/prisma.service';
-import { UserRepositoryService } from '../common/database/respository/user.repository.service';
-import { GeneralPullRepositoryService } from '../common/database/respository/generalpull.repository.service';
-import { MovieRepositoryService } from '../common/database/respository/movie.repository.service';
-import { GPullMovieVoteRepositoryService } from '../common/database/respository/gpullmovievote.repository.service';
-import { PeliculaEventoRepositoryService } from '../common/database/respository/peliculaevento.repository.service';
-import { EventoRepositoryService } from '../common/database/respository/evento.repository.service';
+import { PrismaModule } from 'src/common/database/prisma/prisma.module';
 
 @Module({
   controllers: [BotController],
@@ -18,6 +12,7 @@ export class DiscordBotModule {
   static register(commands: CommandType[], service: any): DynamicModule {
     return {
       module: DiscordBotModule,
+      imports: [PrismaModule],
       providers: [
         BotService,
         {
@@ -28,13 +23,6 @@ export class DiscordBotModule {
           provide: 'FUNCTION_SERVICE',
           useClass: service,
         },
-        PrismaService,
-        UserRepositoryService,
-        GeneralPullRepositoryService,
-        MovieRepositoryService,
-        GPullMovieVoteRepositoryService,
-        EventoRepositoryService,
-        PeliculaEventoRepositoryService,
       ],
       exports: [BotService],
     };
